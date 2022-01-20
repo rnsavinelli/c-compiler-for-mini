@@ -1,0 +1,49 @@
+%!TEX root = notex.tex
+
+\section{Gramática Sintáctica}
+
+A continuación se describen las producciones de su gramática sintáctica.
+
+\subsection{Producciones}
+
+\begin{tabbing}
+
+\textit{programa}: \= \+ \\
+    \textbf{programa} \textit{identificador}
+    \textit{logica}
+    \textbf{fin-programa} \\
+
+\- \\ \textit{logica}: \+ \\
+    \textit{sentencia} \\
+    \textit{logica} \textit{sentencia} \\
+
+\- \\ \textit{sentencia}: \+ \\
+    \textit{identificador} \textbf{<}\textbf{<} \textit{expresión} \textbf{;}\\
+    \textbf{entero} \textit{identificador} \textbf{;}\\
+    \textbf{leer} \textbf{(} \textit{lista-de-identificadores} \textbf{)} \textbf{;}\\
+    \textbf{escribir} \textbf{(} \textit{lista-de-expresiones} \textbf{)} \textbf{;}\\
+
+\- \\ \textit{lista-de-identificadores}: \+ \\
+    \textit{identificador} \\
+    \textit{lista-de-identificadores} \textbf{,} \textit{identificador} \\
+
+\- \\ \textit{lista-de-expresiones}: \+ \\
+    \textit{expresión} \\
+    \textit{lista-de-expresiones} \textbf{,} \textit{expresión} \\
+
+\- \\ \textit{expresión}: \+ \\
+    \textit{expresión-secundaria} \\
+    \textit{expresión-secundaria} \textit{operador-primario} \textit{expresión-secundaria}\\
+
+\- \\ \textit{expresión-secundaria}: \+ \\
+    \textit{expresión-primaria} \\
+    \textit{expresión-primaria} \textit{operador-secundario} \textit{expresión-primaria}\\
+
+\- \\ \textit{expresión-primaria}: \+ \\
+    \textit{identificador} \\
+    \textit{constante} \\
+    \textbf{(} \textit{expresión} \textbf{)}\\
+    \textbf{-} \textit{expresión}\\
+
+\end{tabbing}
+

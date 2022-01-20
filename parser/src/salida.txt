@@ -1,0 +1,17 @@
+PROGRAMA prueba
+ENTERO var1
+ENTERO var2
+LEER
+ENTERO total
+NEGACIÓN
+MULTIPLICACIÓN
+SUMA
+ASIGNACIÓN
+SUMA
+PARÉNTESIS
+MULTIPLICACIÓN
+ASIGNACIÓN
+MÓDULO
+ESCRIBIR
+Compilación terminada con éxito
+Errores sintácticos: 0 - Errores léxicos: 0

@@ -1,0 +1,122 @@
+%!TEX root = notex.tex
+
+\section{Gramática Léxica}
+
+En esta sección se describen las producciones de la gramática léxica del lenguaje de programación MINI.
+
+\subsection{Categorías Léxicas}
+
+\begin{tabbing}
+
+\textit{token}: \= \+ \\
+    \textit{identificador} \\
+    \textit{constante}\\
+    \textit{palabra-reservada} \\
+    \textit{operador} \\
+    \textit{asignación} \\
+    \textit{caracter-de-puntuación}
+
+\end{tabbing}
+
+\subsection{Identificadores}
+
+\begin{tabbing}
+
+\textit{identificador}: \= \+ \\
+    \textit{letra} \\
+    \textit{identificador} \textit{letra} \\
+    \textit{identificador} \textit{digito} \\
+
+\- \\
+\textit{letra}: una de \+ \\
+    \textbf{a b c d e f g h i j k l m n o p q r s t u v w x y z}\\
+    \textbf{A B C D E F G H I J K L M N O P Q R S T U V W X Y Z} \\
+
+\- \\
+\textit{digito}: uno de \+ \\
+    \textbf{0 1 2 3 4 5 6 7 8 9}
+
+\end{tabbing}
+
+\subsection{Constantes}
+
+\begin{tabbing}
+
+\textit{constante}: \= \+ \\
+    \textit{digito} \\
+    \textit{constante} \textit{digito}\\
+
+\- \\
+\textit{digito}: uno de \+ \\
+    \textbf{0 1 2 3 4 5 6 7 8 9}
+
+\end{tabbing}
+
+\subsection{Palabras Reservadas}
+
+\begin{tabbing}
+
+\textit{palabra-reservada}: \= \+ \\
+    \textbf{programa}\\
+    \textbf{entero}\\
+    \textbf{leer}\\
+    \textbf{escribir}\\
+    \textbf{fin-programa}
+
+\end{tabbing}
+
+\subsection{Operadores}
+
+\begin{tabbing}
+
+\textit{operador}: \= \+ \\
+    \textit{operador-primario} \\
+    \textit{operador-secundario} \\
+
+\- \\ \textit{operador-primario}: uno de \+ \\
+    \textbf{
+        +
+        \hspace{3pt}
+        -
+    }\\
+
+\- \\ \textit{operador-secundario}: uno de \+ \\
+    \textbf{
+        *
+        \hspace{3pt}
+        /
+        \hspace{3pt}
+        \%
+    }
+
+\end{tabbing}
+
+\subsection{Asignación}
+
+\begin{tabbing}
+
+\textit{asignación}: \= \+ \\
+    \textbf{<}\textbf{<}
+
+\end{tabbing}
+
+\subsection{Caracteres de Puntuación}
+
+\begin{tabbing}
+
+\textit{caracter-de-puntuación}: \= uno de \+ \\
+    \textbf{
+        (
+        \hspace{3pt}
+        )
+        \hspace{3pt}
+        ;
+        \hspace{3pt}
+        ,
+    }
+
+\end{tabbing}
+
+\subsection{Comentarios}
+
+Los comentarios son ignorados por el scanner. Los mismos comienzan con // y finalizan con el caracter de nueva línea.

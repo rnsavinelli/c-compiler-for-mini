@@ -1,0 +1,9 @@
+programa prueba
+	entero var1;
+	entero var2;
+	leer (var1, var2);
+	entero total; // comentario
+	total << var1 + 32 * -var2;
+	var2 << 2 * (514 + 4);
+	escribir (total%2);
+fin-programa
