@@ -25,7 +25,7 @@
 #include <stdio.h>
 #include "parser.h"
 
-#define ERROR_LEXICO(mensaje) char buffer[128]; sprintf(buffer, "Error léxico: %s: %s", mensaje, yytext ); yyerror(buffer);
+#define ERROR_LEXICO(mensaje) yylexerrs++; char buffer[128]; sprintf(buffer, "Error léxico: %s: %s", mensaje, yytext ); yyerror(buffer);
 
 %}
 
@@ -35,6 +35,7 @@
 %option noyywrap
 %option nounput
 %option noinput
+%option yylineno
 
 espacio_en_blanco [[:space:]]
 comentario \/\/[^\n]*
@@ -67,7 +68,7 @@ asignacion <<
 
 {comentario} {} /* ignorar comentarios */
 
-{caracter_invalido}+ { yylexerrs++; ERROR_LEXICO("Cadena inválida"); }
+{caracter_invalido}+ { ERROR_LEXICO("cadena inválida"); }
 
 {asignacion} { return ASIGNACION; }
 
@@ -75,9 +76,9 @@ asignacion <<
 
 {constante} { yylval = strdup(yytext); return CONSTANTE; }
 
-{constante}({caracter_invalido}|{letra}|{digito})+ { yylexerrs++; ERROR_LEXICO("Constante inválida"); }
+{constante}({caracter_invalido}|{letra})({caracter_invalido}|{letra}|{digito})* { ERROR_LEXICO("constante inválida"); }
 
-{identificador}({caracter_invalido}|{letra}|{digito})+  { yylexerrs++; ERROR_LEXICO("Identificador inválido"); }
+{identificador}{caracter_invalido}({caracter_invalido}|{letra}|{digito})*  { ERROR_LEXICO("identificador inválido"); }
 
 "+" { return '+'; }
 
@@ -97,6 +98,6 @@ asignacion <<
 
 ";" { return ';'; }
 
-. { yylexerrs++; ERROR_LEXICO("Caracter desconocido"); }
+. { ERROR_LEXICO("caracter desconocido"); }
 
 %%

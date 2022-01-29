@@ -32,7 +32,7 @@
 %%
 
 programa
-    :  PROGRAMA IDENTIFICADOR  { inicializar($2); } logica FIN_PROGRAMA { finalizar(); if (yynerrs || yylexerrs || yysemerrs) YYABORT; else YYACCEPT; }
+    :  PROGRAMA IDENTIFICADOR { inicializar($2); } logica FIN_PROGRAMA { finalizar(); if (yynerrs || yylexerrs || yysemerrs) YYABORT; else YYACCEPT; }
     ;
 
 logica
@@ -41,16 +41,16 @@ logica
     ;
 
 sentencia
-    : IDENTIFICADOR ASIGNACION expresion ';' { asignar($1, $3); }
-    | ENTERO IDENTIFICADOR ';' { if( declarar($2) != 0 ) YYERROR; }
+    : identificador ASIGNACION expresion ';' { asignar($1, $3); }
+    | ENTERO IDENTIFICADOR ';' { if( declarar($2) == -1 ) YYERROR; }
     | LEER '(' lista-de-identificadores ')' ';' 
     | ESCRIBIR '(' lista-de-expresiones ')' ';' 
     | error ';'
     ;
 
 lista-de-identificadores
-    : IDENTIFICADOR { leer($1); }
-    | lista-de-identificadores ',' IDENTIFICADOR { leer($3); }
+    : identificador { leer($1); }
+    | lista-de-identificadores ',' identificador { leer($3); }
     ;
 
 lista-de-expresiones
@@ -59,7 +59,7 @@ lista-de-expresiones
     ;
 
 expresion
-    : IDENTIFICADOR
+    : identificador
     | CONSTANTE
     | '(' expresion ')' { $$ = $2; }
     | '-' expresion %prec NEG { $$ = negar($2); }
@@ -68,6 +68,10 @@ expresion
     | expresion '%' expresion { $$ = operar($1, '%', $3); }
     | expresion '+' expresion { $$ = operar($1, '+', $3); }
     | expresion '-' expresion { $$ = operar($1, '-', $3); }
+    ;
+
+identificador
+    : IDENTIFICADOR { if (declarado($1) == 1) $$ = $1; else YYERROR; }
     ;
 
 %%

@@ -38,6 +38,8 @@ void leer(char *variable_izq);
 
 int declarar(char *identificador);
 
+int declarado(char *identificador);
+
 char *operar(char *variable_izq, char operador, char *variable_der);
 
 char *negar(char *variable_izq);

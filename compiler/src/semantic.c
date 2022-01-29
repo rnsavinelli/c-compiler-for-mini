@@ -147,6 +147,17 @@ int declarar(char *identificador)
     }
 
     _arrojar_error_semantico(identificador, REDECLARACION);
+
+    return -1;
+}
+
+int declarado(char *identificador)
+{
+    if (contiene_simbolo(tabla_de_simbolos, identificador) == 0)
+        return 1;
+
+    _arrojar_error_semantico(identificador, DECLARACION_INEXISTENTE);
+
     return -1;
 }
 
