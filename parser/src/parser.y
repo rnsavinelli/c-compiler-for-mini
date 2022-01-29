@@ -35,7 +35,7 @@ logica
     ;
 
 sentencia
-    : IDENTIFICADOR ASIGNACION expresion ';' { printf("ASIGNACIÓN\n"); }
+    : identificador ASIGNACION expresion ';' { printf("ASIGNACIÓN\n"); }
     | ENTERO IDENTIFICADOR ';' { printf("ENTERO %s\n", yylval); free(yylval); }
     | LEER '(' lista-de-identificadores ')' ';' { printf("LEER\n"); }
     | ESCRIBIR '(' lista-de-expresiones ')' ';' { printf("ESCRIBIR\n"); }
@@ -43,7 +43,7 @@ sentencia
     ;
 
 lista-de-identificadores
-    : IDENTIFICADOR
+    : identificador
     | lista-de-identificadores ',' IDENTIFICADOR
     ;
 
@@ -53,7 +53,7 @@ lista-de-expresiones
     ;
 
 expresion
-    : IDENTIFICADOR
+    : identificador
     | CONSTANTE
     | '(' expresion ')' { printf("PARÉNTESIS\n"); }
     | '-' expresion %prec NEG { printf("NEGACIÓN\n"); }
@@ -62,6 +62,10 @@ expresion
     | expresion '%' expresion { printf("MÓDULO\n"); }
     | expresion '+' expresion { printf("SUMA\n"); }
     | expresion '-' expresion { printf("RESTA\n"); }
+    ;
+
+identificador
+    : IDENTIFICADOR
     ;
 
 %%
