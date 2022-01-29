@@ -13,7 +13,7 @@ Token: "CARACTER DE PUNTUACION", Lexema: ","
 Token: "IDENTIFICADOR", Lexema: "var2"
 Token: "CARACTER DE PUNTUACION", Lexema: ")"
 Token: "CARACTER DE PUNTUACION", Lexema: ";"
-[ERROR LÉXICO] Cadena inválida: $@#
+línea #4: Error léxico: cadena inválida: $@#
 Token: "PALABRA RESERVADA", Lexema: "entero"
 Token: "IDENTIFICADOR", Lexema: "total"
 Token: "CARACTER DE PUNTUACION", Lexema: ";"
@@ -33,12 +33,12 @@ Token: "OPERADOR", Lexema: "*"
 Token: "CARACTER DE PUNTUACION", Lexema: "("
 Token: "CONSTANTE", Lexema: "514"
 Token: "OPERADOR", Lexema: "+"
-[ERROR LÉXICO] Constante inválida: 4z2m
+línea #7: Error léxico: constante inválida: 4z2m
 Token: "CARACTER DE PUNTUACION", Lexema: ")"
 Token: "CARACTER DE PUNTUACION", Lexema: ";"
 Token: "PALABRA RESERVADA", Lexema: "escribir"
 Token: "CARACTER DE PUNTUACION", Lexema: "("
-[ERROR LÉXICO] Identificador inválido: total&3a@
+línea #8: Error léxico: identificador inválido: total&3a@
 Token: "OPERADOR", Lexema: "%"
 Token: "CONSTANTE", Lexema: "2"
 Token: "CARACTER DE PUNTUACION", Lexema: ")"

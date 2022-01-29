@@ -11,42 +11,42 @@ int main(void)
 
     while ((token = yylex()) != FDT)
     {
-        switch(token)
+        switch (token)
         {
-            case IDENTIFICADOR:
-                strcpy(token_name, "IDENTIFICADOR");
-                break;
+        case IDENTIFICADOR:
+            strcpy(token_name, "IDENTIFICADOR");
+            break;
 
-            case CONSTANTE:
-                strcpy(token_name, "CONSTANTE");
-                break;
+        case CONSTANTE:
+            strcpy(token_name, "CONSTANTE");
+            break;
 
-            case PROGRAMA:
-            case ENTERO:
-            case LEER:
-            case ESCRIBIR:
-            case FIN_PROGRAMA:
-                strcpy(token_name, "PALABRA RESERVADA");
-                break;
+        case PROGRAMA:
+        case ENTERO:
+        case LEER:
+        case ESCRIBIR:
+        case FIN_PROGRAMA:
+            strcpy(token_name, "PALABRA RESERVADA");
+            break;
 
-            case '+':
-            case '-':
-            case '*':
-            case '/':
-            case '%':
-                strcpy(token_name, "OPERADOR");
-                break;
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+        case '%':
+            strcpy(token_name, "OPERADOR");
+            break;
 
-            case ASIGNACION:
-                strcpy(token_name, "ASIGNACION");
-                break;
+        case ASIGNACION:
+            strcpy(token_name, "ASIGNACION");
+            break;
 
-            case '(':
-            case ')':
-            case ',':
-            case ';':
-                strcpy(token_name, "CARACTER DE PUNTUACION");
-                break;
+        case '(':
+        case ')':
+        case ',':
+        case ';':
+            strcpy(token_name, "CARACTER DE PUNTUACION");
+            break;
         }
 
         printf("Token: \"%s\", Lexema: \"%s\"\n", token_name, yytext);

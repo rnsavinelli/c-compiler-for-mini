@@ -25,7 +25,9 @@
 #include <stdio.h>
 #include "tokens.h"
 
-#define ERROR_LEXICO(mensaje) printf("[ERROR LÉXICO] %s: %s\n", mensaje, yytext )
+void yyerror(const char *);
+
+#define ERROR_LEXICO(mensaje) char buffer[128]; sprintf(buffer, "Error léxico: %s: %s", mensaje, yytext ); yyerror(buffer);
 
 %}
 
@@ -35,6 +37,7 @@
 %option noyywrap
 %option nounput
 %option noinput
+%option yylineno
 
 espacio_en_blanco [[:space:]]
 comentario \/\/[^\n]*
@@ -67,9 +70,7 @@ asignacion <<
 
 {comentario} {} /* ignorar comentarios */
 
-{caracter_invalido}+ { ERROR_LEXICO("Cadena inválida"); }
-
-{palabra_reservada}({caracter_invalido}|{letra}|{digito})+ { ERROR_LEXICO("Palabra reservada inválida"); }
+{caracter_invalido}+ { ERROR_LEXICO("cadena inválida"); }
 
 {asignacion} { return ASIGNACION; }
 
@@ -77,9 +78,9 @@ asignacion <<
 
 {constante} { return CONSTANTE; }
 
-{constante}({caracter_invalido}|{letra}|{digito})+ { ERROR_LEXICO("Constante inválida"); }
+{constante}({caracter_invalido}|{letra})({caracter_invalido}|{letra}|{digito})* { ERROR_LEXICO("constante inválida"); }
 
-{identificador}({caracter_invalido}|{letra}|{digito})+  { ERROR_LEXICO("Identificador inválido"); }
+{identificador}{caracter_invalido}({caracter_invalido}|{letra}|{digito})*  { ERROR_LEXICO("identificador inválido"); }
 
 "+" { return '+'; }
 
@@ -99,6 +100,12 @@ asignacion <<
 
 ";" { return ';'; }
 
-. { ERROR_LEXICO("Caracter desconocido"); }
+. { ERROR_LEXICO("caracter desconocido"); }
 
 %%
+
+/* Informa la ocurrencia de un error. */
+void yyerror(const char *s){
+	printf("línea #%d: %s\n", yylineno, s);
+	return;
+}
